@@ -84,6 +84,12 @@ function App() {
               >
                 Leaderboard
               </button>
+              <button
+                onClick={() => router.push('/login')}
+                className="px-4 py-2 rounded-lg font-medium text-black hover:bg-gray-100 transition-colors"
+              >
+                LoginPage
+              </button>
             </nav>
           </div>
         </div>
