@@ -1,7 +1,203 @@
 [
-    {
-      "email": "alice@example.com",
-      "password": "password123"
-    }
-  ]
-  
+  {
+    "team": "Team1",
+    "password": "team1"
+  },
+  {
+    "team": "Team2",
+    "password": "7281045"
+  },
+  {
+    "team": "Team3",
+    "password": "1432089"
+  },
+  {
+    "team": "Team4",
+    "password": "9802734"
+  },
+  {
+    "team": "Team5",
+    "password": "2938471"
+  },
+  {
+    "team": "Team6",
+    "password": "1048372"
+  },
+  {
+    "team": "Team7",
+    "password": "4829103"
+  },
+  {
+    "team": "Team8",
+    "password": "7392048"
+  },
+  {
+    "team": "Team9",
+    "password": "6482917"
+  },
+  {
+    "team": "Team10",
+    "password": "9372014"
+  },
+  {
+    "team": "Team11",
+    "password": "1203948"
+  },
+  {
+    "team": "Team12",
+    "password": "5820394"
+  },
+  {
+    "team": "Team13",
+    "password": "3048192"
+  },
+  {
+    "team": "Team14",
+    "password": "9482710"
+  },
+  {
+    "team": "Team15",
+    "password": "1039485"
+  },
+  {
+    "team": "Team16",
+    "password": "8471023"
+  },
+  {
+    "team": "Team17",
+    "password": "7291034"
+  },
+  {
+    "team": "Team18",
+    "password": "6482719"
+  },
+  {
+    "team": "Team19",
+    "password": "3948710"
+  },
+  {
+    "team": "Team20",
+    "password": "1203847"
+  },
+  {
+    "team": "Team21",
+    "password": "9384710"
+  },
+  {
+    "team": "Team22",
+    "password": "3047281"
+  },
+  {
+    "team": "Team23",
+    "password": "4871029"
+  },
+  {
+    "team": "Team24",
+    "password": "7281049"
+  },
+  {
+    "team": "Team25",
+    "password": "1938472"
+  },
+  {
+    "team": "Team26",
+    "password": "3847120"
+  },
+  {
+    "team": "Team27",
+    "password": "1039482"
+  },
+  {
+    "team": "Team28",
+    "password": "7482910"
+  },
+  {
+    "team": "Team29",
+    "password": "5847291"
+  },
+  {
+    "team": "Team30",
+    "password": "2948103"
+  },
+  {
+    "team": "Team31",
+    "password": "4738291"
+  },
+  {
+    "team": "Team32",
+    "password": "2039481"
+  },
+  {
+    "team": "Team33",
+    "password": "4829102"
+  },
+  {
+    "team": "Team34",
+    "password": "1738291"
+  },
+  {
+    "team": "Team35",
+    "password": "9481023"
+  },
+  {
+    "team": "Team36",
+    "password": "8392014"
+  },
+  {
+    "team": "Team37",
+    "password": "2039485"
+  },
+  {
+    "team": "Team38",
+    "password": "4738290"
+  },
+  {
+    "team": "Team39",
+    "password": "3847129"
+  },
+  {
+    "team": "Team40",
+    "password": "9471032"
+  },
+  {
+    "team": "Team41",
+    "password": "7382910"
+  },
+  {
+    "team": "Team42",
+    "password": "1029384"
+  },
+  {
+    "team": "Team43",
+    "password": "5847293"
+  },
+  {
+    "team": "Team44",
+    "password": "1839472"
+  },
+  {
+    "team": "Team45",
+    "password": "9847201"
+  },
+  {
+    "team": "Team46",
+    "password": "3048712"
+  },
+  {
+    "team": "Team47",
+    "password": "8471029"
+  },
+  {
+    "team": "Team48",
+    "password": "1928374"
+  },
+  {
+    "team": "Team49",
+    "password": "4738293"
+  },
+  {
+    "team": "Team50",
+    "password": "1039487"
+  }
+]
+

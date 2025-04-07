@@ -1,47 +1,46 @@
-import React from 'react';
-import { BarChart3, TrendingUp, Users, History, Wallet, Trophy, Clock, TrendingDown } from 'lucide-react';
-import { Company, Transaction } from '../types';
-import { format, formatDistanceToNow } from 'date-fns';
-import CountUp from 'react-countup';
+import {
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
+  History,
+  Wallet,
+  Trophy,
+  Clock,
+} from "lucide-react"
+import type { Company, Transaction } from "../types"
+import { format, formatDistanceToNow } from "date-fns"
+import CountUp from "react-countup"
 
 interface DashboardProps {
-  company: Company;
-  transactions: Transaction[];
+  company: Company
+  transactions: Transaction[]
 }
 
 export function Dashboard({ company, transactions }: DashboardProps) {
-  if (!company) return null;
+  if (!company) return null
 
-  const nextInvestmentTime = company.cooldownUntil 
-    ? new Date(company.cooldownUntil) 
-    : null;
-
-  const canInvest = !nextInvestmentTime || nextInvestmentTime.getTime() < Date.now();
+  const nextInvestmentTime = company.cooldownUntil ? new Date(company.cooldownUntil) : null
+  const canInvest = !nextInvestmentTime || nextInvestmentTime.getTime() < Date.now()
 
   return (
     <div className="space-y-6">
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Company Value Card */}
+        {/* Company Value */}
         <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-emerald-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Company Value</p>
               <div className="flex items-center gap-2">
                 <p className="text-2xl font-bold">
-                  <CountUp
-                    end={company.value}
-                    prefix="$"
-                    separator=","
-                    decimal="."
-                    decimals={0}
-                    duration={2}
-                  />
+                  <CountUp end={company.value} prefix="$" separator="," duration={2} />
                 </p>
-                {company.valueChange && (
-                  <span className={`flex items-center text-sm ${
-                    company.valueChange >= 0 ? 'text-green-500' : 'text-red-500'
-                  }`}>
+                {company.valueChange !== undefined && (
+                  <span
+                    className={`flex items-center text-sm ${
+                      company.valueChange >= 0 ? "text-green-500" : "text-red-500"
+                    }`}
+                  >
                     {company.valueChange >= 0 ? (
                       <TrendingUp className="w-4 h-4" />
                     ) : (
@@ -56,53 +55,39 @@ export function Dashboard({ company, transactions }: DashboardProps) {
           </div>
         </div>
 
-        {/* Share Price Card */}
+        {/* Share Price */}
         <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Share Price</p>
               <p className="text-2xl font-bold">
-                <CountUp
-                  end={company.sharePrice}
-                  prefix="$"
-                  separator=","
-                  decimal="."
-                  decimals={2}
-                  duration={2}
-                />
+                <CountUp end={company.sharePrice} prefix="$" decimals={2} duration={2} />
               </p>
             </div>
             <TrendingUp className="text-blue-500 w-8 h-8" />
           </div>
         </div>
 
-        {/* Available Funds Card */}
+        {/* Available Funds */}
         <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Available Funds</p>
               <p className="text-2xl font-bold">
-                <CountUp
-                  end={company.availableFunds}
-                  prefix="$"
-                  separator=","
-                  decimal="."
-                  decimals={0}
-                  duration={2}
-                />
+                <CountUp end={company.availableFunds} prefix="$" separator="," duration={2} />
               </p>
             </div>
             <Wallet className="text-purple-500 w-8 h-8" />
           </div>
         </div>
 
-        {/* Rank Card */}
+        {/* Market Rank */}
         <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-amber-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Market Rank</p>
               <div className="flex items-center gap-2">
-                <p className="text-2xl font-bold">#{company.rank || '-'}</p>
+                <p className="text-2xl font-bold">#{company.rank ?? "-"}</p>
                 <span className="text-sm text-gray-500">of 40</span>
               </div>
             </div>
@@ -120,13 +105,11 @@ export function Dashboard({ company, transactions }: DashboardProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 className="text-gray-500 mb-2">Next Investment Available</h3>
-            {!canInvest && nextInvestmentTime ? (
-              <div className="text-lg font-medium text-red-600">
-                In {formatDistanceToNow(nextInvestmentTime)}
-              </div>
+            {canInvest ? (
+              <div className="text-lg font-medium text-green-600">Ready to invest!</div>
             ) : (
-              <div className="text-lg font-medium text-green-600">
-                Ready to invest!
+              <div className="text-lg font-medium text-red-600">
+                In {formatDistanceToNow(nextInvestmentTime!)}
               </div>
             )}
           </div>
@@ -135,7 +118,8 @@ export function Dashboard({ company, transactions }: DashboardProps) {
             {company.currentInvestment ? (
               <div className="space-y-1">
                 <p className="font-medium">
-                  ${company.currentInvestment.amount.toLocaleString()} in Company #{company.currentInvestment.targetId}
+                  ${company.currentInvestment.amount.toLocaleString()} in Company #
+                  {company.currentInvestment.targetId}
                 </p>
                 <p className="text-sm text-gray-500">
                   Made {formatDistanceToNow(company.currentInvestment.timestamp)} ago
@@ -148,7 +132,7 @@ export function Dashboard({ company, transactions }: DashboardProps) {
         </div>
       </div>
 
-      {/* Transaction History */}
+      {/* Recent Transactions */}
       <div className="bg-white rounded-xl shadow-lg p-6">
         <div className="flex items-center gap-2 mb-4">
           <History className="text-gray-700 w-6 h-6" />
@@ -169,11 +153,15 @@ export function Dashboard({ company, transactions }: DashboardProps) {
               {transactions.slice(0, 5).map((tx) => (
                 <tr key={tx.id} className="border-b border-gray-100">
                   <td className="py-3 px-2">
-                    <span className={`inline-block px-2 py-1 rounded-full text-xs ${
-                      tx.type === 'investment' ? 'bg-blue-100 text-blue-800' :
-                      tx.type === 'loan' ? 'bg-red-100 text-red-800' :
-                      'bg-green-100 text-green-800'
-                    }`}>
+                    <span
+                      className={`inline-block px-2 py-1 rounded-full text-xs ${
+                        tx.type === "investment"
+                          ? "bg-blue-100 text-blue-800"
+                          : tx.type === "loan"
+                          ? "bg-red-100 text-red-800"
+                          : "bg-green-100 text-green-800"
+                      }`}
+                    >
                       {tx.type}
                     </span>
                   </td>
@@ -181,18 +169,20 @@ export function Dashboard({ company, transactions }: DashboardProps) {
                   <td className="py-3 px-2">{tx.fromId || tx.toId}</td>
                   <td className="py-3 px-2">
                     {tx.outcome && (
-                      <span className={`inline-block px-2 py-1 rounded-full text-xs ${
-                        tx.outcome === 'full' ? 'bg-green-100 text-green-800' :
-                        tx.outcome === 'partial' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-red-100 text-red-800'
-                      }`}>
+                      <span
+                        className={`inline-block px-2 py-1 rounded-full text-xs ${
+                          tx.outcome === "full"
+                            ? "bg-green-100 text-green-800"
+                            : tx.outcome === "partial"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
                         {tx.outcome}
                       </span>
                     )}
                   </td>
-                  <td className="py-3 px-2">
-                    {format(tx.timestamp, 'HH:mm:ss')}
-                  </td>
+                  <td className="py-3 px-2">{format(tx.timestamp, "HH:mm:ss")}</td>
                 </tr>
               ))}
             </tbody>
@@ -200,5 +190,5 @@ export function Dashboard({ company, transactions }: DashboardProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

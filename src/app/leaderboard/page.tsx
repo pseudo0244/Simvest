@@ -6,14 +6,16 @@ import { Activity, Trophy, TrendingUp, Users, Search, ArrowLeft } from "lucide-r
 
 // Mock data for the leaderboard
 const teams = Array.from({ length: 40 }, (_, i) => ({
-  id: `${i + 1}`,
-  name: `Company ${i + 1}`,
-  value: Math.random() * 1000000 + 500000,
-  sharePrice: Math.random() * 500 + 100,
-  rank: i + 1,
-  valueChange: (Math.random() * 20 - 10).toFixed(2),
-  investors: Math.floor(Math.random() * 10),
-})).sort((a, b) => b.value - a.value)
+    id: `${i + 1}`,
+    name: `Company ${i + 1}`,
+    value: 0,
+    sharePrice: 0,
+    rank: i + 1,
+    valueChange: "0.00",
+    investors: 0,
+  }))
+  
+  
 
 export default function LeaderboardPage() {
   const [searchTerm, setSearchTerm] = useState("")

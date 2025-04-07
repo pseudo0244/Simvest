@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id             Int      @id @default(autoincrement())
+  name           String
+  value          Float
+  sharePrice     Float
+  shares         Int
+  availableFunds Float
+  valueChange    Float?
+  createdAt      DateTime @default(now())
+
+  // Companies this one has invested in
+  investmentsMade Investment[] @relation("Investor")
+
+  // Companies that invested in this one
+  investmentsReceived Investment[] @relation("Company")
+}
+
+model Investment {
+  id         Int      @id @default(autoincrement())
+  investorId Int
+  companyId  Int
+  amount     Float
+  createdAt  DateTime @default(now())
+
+  // Investor
+  investor Company @relation("Investor", fields: [investorId], references: [id])
+
+  // Investee
+  company Company @relation("Company", fields: [companyId], references: [id])
+}
